@@ -7,11 +7,9 @@
 
 #ifndef FUN_H_
 #define FUN_H_
+
 #include <avr/io.h>
-#include <string.h>
-#include <stdio.h>
-#include <avr/wdt.h>
-#include <util/delay.h>
+
 // dioda LED
 #define LED_DDR DDRC
 #define LED_PIN (1<<PC4)			// definicja pinu do którego pod³¹czona jest dioda

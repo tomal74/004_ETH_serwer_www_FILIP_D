@@ -5,13 +5,14 @@
  *      Author: G505s
  */
 
-
-#include "fun.h"
 #include <avr/io.h>
 #include <string.h>
 #include <stdio.h>
 #include <avr/wdt.h>
 #include <util/delay.h>
+
+#include "fun.h"
+
 
 void ctc_tim1_init(void) {
 	/* CTC mode */
@@ -117,3 +118,5 @@ uint8_t RelaySuperDebounce( uint8_t * key_state, volatile uint8_t *KPIN, uint8_t
 	}
 	return 0;
 }
+
+

@@ -4,24 +4,27 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../basic_web_server_example.c \
 ../enc28j60.c \
 ../fun.c \
 ../ip_arp_udp_tcp.c \
+../main.c \
+../web_page.c \
 ../websrv_help_functions.c 
 
 OBJS += \
-./basic_web_server_example.o \
 ./enc28j60.o \
 ./fun.o \
 ./ip_arp_udp_tcp.o \
+./main.o \
+./web_page.o \
 ./websrv_help_functions.o 
 
 C_DEPS += \
-./basic_web_server_example.d \
 ./enc28j60.d \
 ./fun.d \
 ./ip_arp_udp_tcp.d \
+./main.d \
+./web_page.d \
 ./websrv_help_functions.d 
 
 
