@@ -6,18 +6,21 @@
 C_SRCS += \
 ../basic_web_server_example.c \
 ../enc28j60.c \
+../fun.c \
 ../ip_arp_udp_tcp.c \
 ../websrv_help_functions.c 
 
 OBJS += \
 ./basic_web_server_example.o \
 ./enc28j60.o \
+./fun.o \
 ./ip_arp_udp_tcp.o \
 ./websrv_help_functions.o 
 
 C_DEPS += \
 ./basic_web_server_example.d \
 ./enc28j60.d \
+./fun.d \
 ./ip_arp_udp_tcp.d \
 ./websrv_help_functions.d 
 

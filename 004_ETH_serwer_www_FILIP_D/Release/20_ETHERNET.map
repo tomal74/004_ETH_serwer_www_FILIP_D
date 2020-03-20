@@ -82,6 +82,7 @@ Address of section .data set to 0x800100
 LOAD c:/program files (x86)/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o
 LOAD ./basic_web_server_example.o
 LOAD ./enc28j60.o
+LOAD ./fun.o
 LOAD ./ip_arp_udp_tcp.o
 LOAD ./websrv_help_functions.o
 START GROUP
@@ -194,105 +195,105 @@ END GROUP
  *(.trampolines*)
                 0x00000068                __trampolines_end = .
  *(.progmem*)
- .progmem.data.__c.2538
+ .progmem.data.__c.2528
                 0x00000068       0x50 ./basic_web_server_example.o
- .progmem.data.__c.2535
+ .progmem.data.__c.2525
                 0x000000b8       0x10 ./basic_web_server_example.o
- .progmem.data.__c.2492
+ .progmem.data.__c.2505
                 0x000000c8       0x17 ./basic_web_server_example.o
- .progmem.data.__c.2490
+ .progmem.data.__c.2503
                 0x000000df        0x9 ./basic_web_server_example.o
- .progmem.data.__c.2488
+ .progmem.data.__c.2501
                 0x000000e8       0x22 ./basic_web_server_example.o
- .progmem.data.__c.2486
+ .progmem.data.__c.2499
                 0x0000010a       0x1d ./basic_web_server_example.o
- .progmem.data.__c.2484
+ .progmem.data.__c.2497
                 0x00000127        0xd ./basic_web_server_example.o
- .progmem.data.__c.2482
+ .progmem.data.__c.2495
                 0x00000134       0x20 ./basic_web_server_example.o
- .progmem.data.__c.2480
+ .progmem.data.__c.2493
                 0x00000154       0x15 ./basic_web_server_example.o
- .progmem.data.__c.2474
+ .progmem.data.__c.2487
                 0x00000169        0x8 ./basic_web_server_example.o
- .progmem.data.__c.2472
+ .progmem.data.__c.2485
                 0x00000171        0x7 ./basic_web_server_example.o
- .progmem.data.__c.2468
+ .progmem.data.__c.2481
                 0x00000178        0x3 ./basic_web_server_example.o
- .progmem.data.__c.2465
+ .progmem.data.__c.2478
                 0x0000017b        0xb ./basic_web_server_example.o
- .progmem.data.__c.2461
+ .progmem.data.__c.2474
                 0x00000186        0xb ./basic_web_server_example.o
- .progmem.data.__c.2458
+ .progmem.data.__c.2471
                 0x00000191        0x6 ./basic_web_server_example.o
- .progmem.data.__c.2454
+ .progmem.data.__c.2467
                 0x00000197        0x7 ./basic_web_server_example.o
- .progmem.data.__c.2451
+ .progmem.data.__c.2464
                 0x0000019e       0x13 ./basic_web_server_example.o
- .progmem.data.__c.2449
+ .progmem.data.__c.2462
                 0x000001b1        0x5 ./basic_web_server_example.o
- .progmem.data.__c.2447
+ .progmem.data.__c.2460
                 0x000001b6        0xa ./basic_web_server_example.o
- .progmem.data.__c.2445
+ .progmem.data.__c.2458
                 0x000001c0        0x7 ./basic_web_server_example.o
- .progmem.data.__c.2441
+ .progmem.data.__c.2454
                 0x000001c7        0x3 ./basic_web_server_example.o
- .progmem.data.__c.2438
+ .progmem.data.__c.2451
                 0x000001ca        0xb ./basic_web_server_example.o
- .progmem.data.__c.2434
+ .progmem.data.__c.2447
                 0x000001d5        0xb ./basic_web_server_example.o
- .progmem.data.__c.2431
+ .progmem.data.__c.2444
                 0x000001e0        0x6 ./basic_web_server_example.o
- .progmem.data.__c.2427
+ .progmem.data.__c.2440
                 0x000001e6        0x7 ./basic_web_server_example.o
- .progmem.data.__c.2424
+ .progmem.data.__c.2437
                 0x000001ed        0x2 ./basic_web_server_example.o
- .progmem.data.__c.2422
+ .progmem.data.__c.2435
                 0x000001ef       0x10 ./basic_web_server_example.o
- .progmem.data.__c.2420
+ .progmem.data.__c.2433
                 0x000001ff        0xe ./basic_web_server_example.o
- .progmem.data.__c.2418
+ .progmem.data.__c.2431
                 0x0000020d       0x11 ./basic_web_server_example.o
- .progmem.data.__c.2416
+ .progmem.data.__c.2429
                 0x0000021e       0x3e ./basic_web_server_example.o
- .progmem.data.__c.2414
+ .progmem.data.__c.2427
                 0x0000025c        0x6 ./basic_web_server_example.o
- .progmem.data.__c.2412
+ .progmem.data.__c.2425
                 0x00000262       0x1c ./basic_web_server_example.o
- .progmem.data.__c.2406
+ .progmem.data.__c.2419
                 0x0000027e        0xc ./basic_web_server_example.o
- .progmem.data.__c.2404
+ .progmem.data.__c.2417
                 0x0000028a       0x10 ./basic_web_server_example.o
- .progmem.data.__c.2394
+ .progmem.data.__c.2407
                 0x0000029a       0x11 ./basic_web_server_example.o
- .progmem.data.__c.2392
+ .progmem.data.__c.2405
                 0x000002ab        0x5 ./basic_web_server_example.o
- .progmem.data.__c.2390
+ .progmem.data.__c.2403
                 0x000002b0        0xc ./basic_web_server_example.o
- .progmem.data.__c.2388
+ .progmem.data.__c.2401
                 0x000002bc        0xf ./basic_web_server_example.o
- .progmem.data.__c.2383
+ .progmem.data.__c.2396
                 0x000002cb       0x2f ./basic_web_server_example.o
- .progmem.data.__c.2381
+ .progmem.data.__c.2394
                 0x000002fa       0x16 ./basic_web_server_example.o
- .progmem.data.__c.2379
+ .progmem.data.__c.2392
                 0x00000310       0x16 ./basic_web_server_example.o
- .progmem.data.__c.2377
+ .progmem.data.__c.2390
                 0x00000326        0x3 ./basic_web_server_example.o
- .progmem.data.__c.2375
+ .progmem.data.__c.2388
                 0x00000329        0x4 ./basic_web_server_example.o
- .progmem.data.__c.2373
+ .progmem.data.__c.2386
                 0x0000032d       0x10 ./basic_web_server_example.o
- .progmem.data.__c.2371
+ .progmem.data.__c.2384
                 0x0000033d       0x24 ./basic_web_server_example.o
- .progmem.data.__c.2369
+ .progmem.data.__c.2382
                 0x00000361       0x1c ./basic_web_server_example.o
- .progmem.data.__c.2367
+ .progmem.data.__c.2380
                 0x0000037d       0x20 ./basic_web_server_example.o
- .progmem.data.__c.2359
+ .progmem.data.__c.2372
                 0x0000039d       0x11 ./basic_web_server_example.o
- .progmem.data.__c.2353
+ .progmem.data.__c.2366
                 0x000003ae       0x52 ./basic_web_server_example.o
- .progmem.data.__c.2347
+ .progmem.data.__c.2360
                 0x00000400       0x3c ./basic_web_server_example.o
  .progmem.data.tekst_end
                 0x0000043c        0x9 ./basic_web_server_example.o
@@ -405,6 +406,7 @@ END GROUP
                 0x00000614                __vector_20
  .text          0x00000618        0x0 ./basic_web_server_example.o
  .text          0x00000618        0x0 ./enc28j60.o
+ .text          0x00000618        0x0 ./fun.o
  .text          0x00000618        0x0 ./ip_arp_udp_tcp.o
  .text          0x00000618        0x0 ./websrv_help_functions.o
  .text          0x00000618        0x0 c:/program files (x86)/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_udivmodsi4.o)
@@ -458,77 +460,77 @@ END GROUP
  .text.analyse_get_url
                 0x00000c52       0xaa ./basic_web_server_example.o
                 0x00000c52                analyse_get_url
- .text.io_init  0x00000cfc       0x1e ./basic_web_server_example.o
-                0x00000cfc                io_init
- .text.ctc_tim0_init
-                0x00000d1a       0x1c ./basic_web_server_example.o
-                0x00000d1a                ctc_tim0_init
- .text.ctc_tim1_init
-                0x00000d36       0x28 ./basic_web_server_example.o
-                0x00000d36                ctc_tim1_init
- .text.RelaySuperDebounce
-                0x00000d5e       0x82 ./basic_web_server_example.o
-                0x00000d5e                RelaySuperDebounce
  .text.debouncer_process
-                0x00000de0       0xf0 ./basic_web_server_example.o
-                0x00000de0                debouncer_process
+                0x00000cfc       0xf0 ./basic_web_server_example.o
+                0x00000cfc                debouncer_process
  .text.startup.main
-                0x00000ed0      0x20e ./basic_web_server_example.o
-                0x00000ed0                main
+                0x00000dec      0x20e ./basic_web_server_example.o
+                0x00000dec                main
  .text.__vector_14
-                0x000010de       0x7a ./basic_web_server_example.o
-                0x000010de                __vector_14
+                0x00000ffa       0x7a ./basic_web_server_example.o
+                0x00000ffa                __vector_14
  .text.__vector_11
-                0x00001158       0x70 ./basic_web_server_example.o
-                0x00001158                __vector_11
+                0x00001074       0x70 ./basic_web_server_example.o
+                0x00001074                __vector_11
  .text.enc28j60ReadOp
-                0x000011c8       0x2c ./enc28j60.o
-                0x000011c8                enc28j60ReadOp
+                0x000010e4       0x2c ./enc28j60.o
+                0x000010e4                enc28j60ReadOp
  .text.enc28j60WriteOp
-                0x000011f4       0x1a ./enc28j60.o
-                0x000011f4                enc28j60WriteOp
+                0x00001110       0x1a ./enc28j60.o
+                0x00001110                enc28j60WriteOp
  .text.enc28j60ReadBuffer
-                0x0000120e       0x2c ./enc28j60.o
-                0x0000120e                enc28j60ReadBuffer
+                0x0000112a       0x2c ./enc28j60.o
+                0x0000112a                enc28j60ReadBuffer
  .text.enc28j60WriteBuffer
-                0x0000123a       0x2a ./enc28j60.o
-                0x0000123a                enc28j60WriteBuffer
+                0x00001156       0x2a ./enc28j60.o
+                0x00001156                enc28j60WriteBuffer
  .text.enc28j60SetBank
-                0x00001264       0x44 ./enc28j60.o
-                0x00001264                enc28j60SetBank
+                0x00001180       0x44 ./enc28j60.o
+                0x00001180                enc28j60SetBank
  .text.enc28j60Read
-                0x000012a8       0x20 ./enc28j60.o
-                0x000012a8                enc28j60Read
+                0x000011c4       0x20 ./enc28j60.o
+                0x000011c4                enc28j60Read
  .text.enc28j60Write
-                0x000012c8       0x26 ./enc28j60.o
-                0x000012c8                enc28j60Write
+                0x000011e4       0x26 ./enc28j60.o
+                0x000011e4                enc28j60Write
  .text.enc28j60PhyReadH
-                0x000012ee       0x32 ./enc28j60.o
-                0x000012ee                enc28j60PhyReadH
+                0x0000120a       0x32 ./enc28j60.o
+                0x0000120a                enc28j60PhyReadH
  .text.enc28j60PhyWrite
-                0x00001320       0x48 ./enc28j60.o
-                0x00001320                enc28j60PhyWrite
+                0x0000123c       0x48 ./enc28j60.o
+                0x0000123c                enc28j60PhyWrite
  .text.enc28j60clkout
-                0x00001368        0xa ./enc28j60.o
-                0x00001368                enc28j60clkout
+                0x00001284        0xa ./enc28j60.o
+                0x00001284                enc28j60clkout
  .text.enc28j60Init
-                0x00001372      0x14c ./enc28j60.o
-                0x00001372                enc28j60Init
+                0x0000128e      0x14c ./enc28j60.o
+                0x0000128e                enc28j60Init
  .text.enc28j60getrev
-                0x000014be        0xe ./enc28j60.o
-                0x000014be                enc28j60getrev
+                0x000013da        0xe ./enc28j60.o
+                0x000013da                enc28j60getrev
  .text.enc28j60linkup
-                0x000014cc       0x12 ./enc28j60.o
-                0x000014cc                enc28j60linkup
+                0x000013e8       0x12 ./enc28j60.o
+                0x000013e8                enc28j60linkup
  .text.enc28j60PacketSend
-                0x000014de       0x80 ./enc28j60.o
-                0x000014de                enc28j60PacketSend
+                0x000013fa       0x80 ./enc28j60.o
+                0x000013fa                enc28j60PacketSend
  .text.enc28j60hasRxPkt
-                0x0000155e       0x12 ./enc28j60.o
-                0x0000155e                enc28j60hasRxPkt
+                0x0000147a       0x12 ./enc28j60.o
+                0x0000147a                enc28j60hasRxPkt
  .text.enc28j60PacketReceive
-                0x00001570       0xf8 ./enc28j60.o
-                0x00001570                enc28j60PacketReceive
+                0x0000148c       0xf8 ./enc28j60.o
+                0x0000148c                enc28j60PacketReceive
+ .text.ctc_tim1_init
+                0x00001584       0x28 ./fun.o
+                0x00001584                ctc_tim1_init
+ .text.io_init  0x000015ac       0x1e ./fun.o
+                0x000015ac                io_init
+ .text.ctc_tim0_init
+                0x000015ca       0x1c ./fun.o
+                0x000015ca                ctc_tim0_init
+ .text.RelaySuperDebounce
+                0x000015e6       0x82 ./fun.o
+                0x000015e6                RelaySuperDebounce
  .text.www_client_internal_result_callback
                 0x00001668       0x92 ./ip_arp_udp_tcp.o
                 0x00001668                www_client_internal_result_callback
@@ -828,6 +830,7 @@ END GROUP
  .data          0x00800100        0x0 c:/program files (x86)/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o
  .data          0x00800100        0x0 ./basic_web_server_example.o
  .data          0x00800100        0x0 ./enc28j60.o
+ .data          0x00800100        0x0 ./fun.o
  .data          0x00800100        0x0 ./ip_arp_udp_tcp.o
  .data          0x00800100        0x0 ./websrv_help_functions.o
  .data          0x00800100        0x0 c:/program files (x86)/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_udivmodsi4.o)
@@ -885,6 +888,7 @@ END GROUP
  .bss           0x0080013c        0x0 c:/program files (x86)/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o
  .bss           0x0080013c        0x0 ./basic_web_server_example.o
  .bss           0x0080013c        0x0 ./enc28j60.o
+ .bss           0x0080013c        0x0 ./fun.o
  .bss           0x0080013c        0x0 ./ip_arp_udp_tcp.o
  .bss           0x0080013c        0x0 ./websrv_help_functions.o
  .bss           0x0080013c        0x0 c:/program files (x86)/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_udivmodsi4.o)
@@ -910,12 +914,12 @@ END GROUP
  .bss           0x0080013c        0x0 c:/program files (x86)/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_prologue.o)
  .bss           0x0080013c        0x0 c:/program files (x86)/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_epilogue.o)
  *(.bss*)
- .bss.sw6.2528  0x0080013c        0x1 ./basic_web_server_example.o
- .bss.sw5.2527  0x0080013d        0x1 ./basic_web_server_example.o
- .bss.sw4.2526  0x0080013e        0x1 ./basic_web_server_example.o
- .bss.sw3.2525  0x0080013f        0x1 ./basic_web_server_example.o
- .bss.sw2.2524  0x00800140        0x1 ./basic_web_server_example.o
- .bss.sw1.2523  0x00800141        0x1 ./basic_web_server_example.o
+ .bss.sw6.2518  0x0080013c        0x1 ./basic_web_server_example.o
+ .bss.sw5.2517  0x0080013d        0x1 ./basic_web_server_example.o
+ .bss.sw4.2516  0x0080013e        0x1 ./basic_web_server_example.o
+ .bss.sw3.2515  0x0080013f        0x1 ./basic_web_server_example.o
+ .bss.sw2.2514  0x00800140        0x1 ./basic_web_server_example.o
+ .bss.sw1.2513  0x00800141        0x1 ./basic_web_server_example.o
  .bss.on_time_2
                 0x00800142        0x4 ./basic_web_server_example.o
  .bss.on_time_1
@@ -1050,6 +1054,7 @@ END GROUP
  .comment       0x00000000       0x30 ./basic_web_server_example.o
                                  0x31 (size before relaxing)
  .comment       0x00000000       0x31 ./enc28j60.o
+ .comment       0x00000000       0x31 ./fun.o
  .comment       0x00000000       0x31 ./ip_arp_udp_tcp.o
  .comment       0x00000000       0x31 ./websrv_help_functions.o
  .comment       0x00000000       0x31 c:/program files (x86)/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5\libc.a(sprintf.o)

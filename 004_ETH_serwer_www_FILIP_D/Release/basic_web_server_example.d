@@ -1,6 +1,6 @@
 basic_web_server_example.o: ../basic_web_server_example.c \
  ../ip_arp_udp_tcp.h ../ip_config.h ../enc28j60.h \
- ../websrv_help_functions.h ../net.h
+ ../websrv_help_functions.h ../net.h ../fun.h
 
 ../ip_arp_udp_tcp.h:
 
@@ -11,3 +11,5 @@ basic_web_server_example.o: ../basic_web_server_example.c \
 ../websrv_help_functions.h:
 
 ../net.h:
+
+../fun.h:
