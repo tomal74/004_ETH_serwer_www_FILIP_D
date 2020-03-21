@@ -244,18 +244,22 @@ void debouncer_process(void) {
 		fail_1 = RelaySuperDebounce(&sw5, &FAILURE1_PIN, FAILURE1_MASK, &Timer6, NULL);
 		fail_2 = RelaySuperDebounce(&sw6, &FAILURE2_PIN, FAILURE2_MASK, &Timer7, NULL);
 
-		/* Rising Edge Of Cap Sensor1 - Get Start Time Of First Relay */
-		if(rly_1 == 2) on_time_1 = time;
-		/* Rising Edge Of Cap Sensor2 - Get Start Time Of Second Relay */
-		if(rly_2 == 2) on_time_2 = time;
-		/* Falling Edge Of Main Relay1 - Get Stop Time Of First Relay */
+		/* Main Relay1 On - Get Work Time Of First Relay */
 		if(rly_1 == 1) { off_time_1 = time - on_time_1; off_time_1 /= 60; }
-		/* Falling Edge Of Main Relay2 - Get Stop Time Of Second Relay */
+		/* Rising Edge Of Cap Sensor1 - Get Start Time Of First Relay */
+		else if(rly_1 == 2) on_time_1 = time;
+		/* Main Relay2 On - Get Work Time Of Second Relay */
 		if(rly_2 == 1) { off_time_2 = time - on_time_2; off_time_2 /= 60; }
-
-		if(cap_1 == 2) { wait_time_1 = time;  }
-
-		if(cap_2 == 2) { wait_time_2 = time; }
+		/* Rising Edge Of Cap Sensor2 - Get Start Time Of Second Relay */
+		else if(rly_2 == 2) on_time_2 = time;
+		/* Rising Edge On Cap Sensor1 - Get The Wait Start Time */
+		if(cap_1 == 2) wait_time_1 = time;
+		/* Rising Edge On Cap Sensor2 - Get The Wait Start Time */
+		if(cap_2 == 2) wait_time_2 = time;
+		/* Rising Edge On Fail Relay1 - Get The Fail Start Time */
+		if(fail_1 == 2) fail_time_1 = time;
+		/* Rising Edge On Fail Relay2 - Get The Fail Start Time */
+		if(fail_2 == 2) fail_time_2 = time;
 
 		/* Set Interval Beetwen State Checking As 1s */
 		Timer1 = 100;

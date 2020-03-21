@@ -37,6 +37,7 @@ volatile uint32_t time=0;
 uint32_t on_time_1, on_time_2;
 uint32_t off_time_1, off_time_2;
 uint32_t wait_time_1, wait_time_2;
+uint32_t fail_time_1, fail_time_2;
 
 uint8_t str_buffer[6];
 uint16_t visitor_counter;
@@ -164,14 +165,24 @@ uint16_t print_webpage(uint8_t *buf) {
         plen=fill_tcp_data_p(buf,plen,PSTR("</i>\n\n"));
         plen=fill_tcp_data_p(buf,plen,PSTR("<h1>OBORA: "));
 
-        if(fail_1) plen=fill_tcp_data_p(buf,plen,PSTR("<font color='red'>AWARIA!</font>"));
+        if(fail_1) {
+        	plen=fill_tcp_data_p(buf,plen,PSTR("<font color='red'>AWARIA!</font>"));
+        	printUNIXtime(fail_time_1, &plen);
+        }
         else if(!cap_1 && !rly_1 && !fail_1) plen=fill_tcp_data_p(buf,plen,PSTR("Stop")); //stop, czas pracy
         else if( cap_1 && !rly_1 && !fail_1) {
         	plen=fill_tcp_data_p(buf,plen,PSTR("Czekam ")); //czekam, godzina
         	printUNIXtime(wait_time_1, &plen);
         }
         else if( cap_1 &&  rly_1 && !fail_1) plen=fill_tcp_data_p(buf,plen,PSTR("Praca...")); //zaladunek, godzina startu
-        else plen=fill_tcp_data_p(buf,plen,PSTR("<font color='red'>---</font>")); //Stan teoretycznie niemozliwy
+        else {																				//Stan teoretycznie niemozliwy
+        	plen=fill_tcp_data_p(buf,plen,PSTR("<font color='red'>"));
+        	// Jezeli stan nieokreslony wyswietl stan czujnika (cap), przekaznika (relay), samopodtrzymania - awaria (fail)
+            sprintf( (char*)str_buffer, "C=%d, R=%d, F=%d", cap_1, rly_1, fail_1 );
+            plen=fill_tcp_data(buf, plen, (char*) str_buffer);
+            memset(str_buffer, 0, sizeof(str_buffer));
+            plen=fill_tcp_data_p(buf,plen,PSTR("</font>"));
+        }
         //else if(!cap_1 && !rly_1 && fail_1)  //awaria, rura pelna
         //else if(cap_1 && !rly_1 && fail_1) //awaria, rura pusta
         plen=fill_tcp_data_p(buf,plen,PSTR("</h1><h2>"));
@@ -182,20 +193,28 @@ uint16_t print_webpage(uint8_t *buf) {
 		memset(str_buffer, 0, sizeof(str_buffer));
         plen=fill_tcp_data_p(buf,plen,PSTR("min</h2>"));
 
-
-
         plen=fill_tcp_data_p(buf,plen,PSTR("<h1></h1>"));
         plen=fill_tcp_data_p(buf,plen,PSTR("<hr>"));
         plen=fill_tcp_data_p(buf,plen,PSTR("<h1>STODOLA: "));
 
-        if(fail_2) plen=fill_tcp_data_p(buf,plen,PSTR("<font color='red'>AWARIA!</font>"));
+        if(fail_2) {
+        	plen=fill_tcp_data_p(buf,plen,PSTR("<font color='red'>AWARIA!</font>"));
+        	printUNIXtime(fail_time_2, &plen);
+        }
         else if(!cap_2 && !rly_2 && !fail_2) plen=fill_tcp_data_p(buf,plen,PSTR("Stop")); //stop, czas pracy
         else if( cap_2 && !rly_2 && !fail_2) {
         	plen=fill_tcp_data_p(buf,plen,PSTR("Czekam ")); //czekam, godzina
         	printUNIXtime(wait_time_2, &plen);
         }
         else if( cap_2 &&  rly_2 && !fail_2) plen=fill_tcp_data_p(buf,plen,PSTR("Praca..")); //zaladunek, godzina startu
-        else plen=fill_tcp_data_p(buf,plen,PSTR("<font color='red'>---</font>")); //Stan teoretycznie niemozliwy
+        else {
+        	plen=fill_tcp_data_p(buf,plen,PSTR("<font color='red'>"));
+        	// Jezeli stan nieokreslony wyswietl stan czujnika (cap), przekaznika (relay), samopodtrzymania - awaria (fail)
+            sprintf( (char*)str_buffer, "C=%d, R=%d, F=%d", cap_2, rly_2, fail_2 );
+            plen=fill_tcp_data(buf, plen, (char*) str_buffer);
+            memset(str_buffer, 0, sizeof(str_buffer));
+            plen=fill_tcp_data_p(buf,plen,PSTR("</font>"));
+        }
         //else if(!cap_2 && !rly_2 && fail_2)  //awaria, rura pelna
         //else if(cap_2 && !rly_2 && fail_2) //awaria, rura pusta
         plen=fill_tcp_data_p(buf,plen,PSTR("</h1><h2>"));
@@ -210,6 +229,64 @@ uint16_t print_webpage(uint8_t *buf) {
         return(plen);
 }
 
+
+// prepare the webpage by writing the data to the tcp send buffer
+uint16_t print_app_webpage(uint8_t *buf) {
+        uint16_t plen;
+
+        plen=http200ok();
+        plen=fill_tcp_data_p(buf,plen,PSTR("<script src=t1.js></script>"));
+        plen=fill_tcp_data_p(buf,plen,PSTR("<pre>"));
+        plen=fill_tcp_data_p(buf,plen,PSTR("<hr>\n"));
+        plen=fill_tcp_data_p(buf,plen,PSTR("<h1>OBORA: "));
+
+        if(fail_1) {
+        	plen=fill_tcp_data_p(buf,plen,PSTR("<font color='red'>AWARIA!</font>"));
+        	printUNIXtime(fail_time_1, &plen);
+        }
+        else if(!cap_1 && !rly_1 && !fail_1) plen=fill_tcp_data_p(buf,plen,PSTR("Stop")); //stop, czas pracy
+        else if( cap_1 && !rly_1 && !fail_1) {
+        	plen=fill_tcp_data_p(buf,plen,PSTR("Czekam ")); //czekam, godzina
+        	printUNIXtime(wait_time_1, &plen);
+        }
+        else if( cap_1 &&  rly_1 && !fail_1) plen=fill_tcp_data_p(buf,plen,PSTR("Praca...")); //zaladunek, godzina startu
+        else plen=fill_tcp_data_p(buf,plen,PSTR("<font color='red'>---</font>")); //Stan teoretycznie niemozliwy
+
+        plen=fill_tcp_data_p(buf,plen,PSTR("</h1><h2>"));
+        printUNIXtime(on_time_1, &plen);
+        plen=fill_tcp_data_p(buf,plen,PSTR(", "));
+        sprintf( (char*)str_buffer, "%ld", off_time_1 );
+        plen=fill_tcp_data(buf, plen, (char*) str_buffer);
+		memset(str_buffer, 0, sizeof(str_buffer));
+        plen=fill_tcp_data_p(buf,plen,PSTR("min</h2>"));
+
+        plen=fill_tcp_data_p(buf,plen,PSTR("<h1></h1>"));
+        plen=fill_tcp_data_p(buf,plen,PSTR("<hr>"));
+        plen=fill_tcp_data_p(buf,plen,PSTR("<h1>STODOLA: "));
+
+        if(fail_2) {
+        	plen=fill_tcp_data_p(buf,plen,PSTR("<font color='red'>AWARIA!</font>"));
+        	printUNIXtime(fail_time_2, &plen);
+        }
+        else if(!cap_2 && !rly_2 && !fail_2) plen=fill_tcp_data_p(buf,plen,PSTR("Stop")); //stop, czas pracy
+        else if( cap_2 && !rly_2 && !fail_2) {
+        	plen=fill_tcp_data_p(buf,plen,PSTR("Czekam ")); //czekam, godzina
+        	printUNIXtime(wait_time_2, &plen);
+        }
+        else if( cap_2 &&  rly_2 && !fail_2) plen=fill_tcp_data_p(buf,plen,PSTR("Praca..")); //zaladunek, godzina startu
+        else plen=fill_tcp_data_p(buf,plen,PSTR("<font color='red'>---</font>")); //Stan teoretycznie niemozliwy
+
+        plen=fill_tcp_data_p(buf,plen,PSTR("</h1><h2>"));
+        printUNIXtime(on_time_2, &plen);
+        plen=fill_tcp_data_p(buf,plen,PSTR(", "));
+        sprintf( (char*)str_buffer, "%ld", off_time_2 );
+        plen=fill_tcp_data(buf, plen, (char*) str_buffer);
+		memset(str_buffer, 0, sizeof(str_buffer));
+        plen=fill_tcp_data_p(buf,plen,PSTR("min</h2>"));
+
+        plen=fill_tcp_data_p(buf,plen,PSTR("</pre>\n"));
+        return(plen);
+}
 
 uint16_t print_webpage_ntp_req(void)
 {
@@ -232,25 +309,31 @@ uint16_t print_webpage_ntp_req(void)
 // return values: are used to show different pages (see main program)
 //
 int8_t analyse_get_url(char *str) {
+
+	if (strncmp("/flr ", str, 5) == 0) {
+		gPlen = print_webpage(buf);
+		visitor_counter++;
+		return (10);
+	}
+	else if (strncmp("/appflr ", str, 5) == 0) {
+		gPlen = print_app_webpage(buf);
+		return (10);
+	}
 	// the first slash:
-	if (str[0] == '/' && str[1] == ' ') {
+	else if (str[0] == '/' && str[1] == ' ') {
 		// end of url, display just the web page
 		return (0);
 	}
-	if (strncmp("/flr ", str, 5) == 0) {
-		gPlen = print_webpage(buf);
-    	visitor_counter++;
-		return (10);
-	}
-    if (strncmp("/t1.js",str,6)==0){
+
+	else if (strncmp("/t1.js",str,6)==0){
             gPlen=print_t1js();
             return(10);
     }
-	if (strncmp("/m ", str, 3) == 0) {
+	else if (strncmp("/m ", str, 3) == 0) {
 		gPlen = print_webpage_ntp_req();
 		return (10);
 	}
-	if (strncmp("/r? ", str, 4) == 0) {
+	else if (strncmp("/r? ", str, 4) == 0) {
 		// we can't call here client_ntp_request as this would mess up the buf variable
 		// for our currently worked on web-page.
 		send_ntp_req_from_idle_loop = 1;
