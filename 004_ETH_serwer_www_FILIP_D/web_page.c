@@ -163,7 +163,7 @@ uint16_t print_webpage(uint8_t *buf) {
         sprintf( (char*)str_buffer, "%d", visitor_counter );
         plen=fill_tcp_data(buf, plen, (char*) str_buffer);
         memset(str_buffer, 0, sizeof(str_buffer));
-        plen=fill_tcp_data_p(buf,plen,PSTR("</i><hr>\n\n"));
+        plen=fill_tcp_data_p(buf,plen,PSTR("</i>\n\n"));
         plen=fill_tcp_data_p(buf,plen,PSTR("<h1>OBORA: "));
 
         if(fail_1) {

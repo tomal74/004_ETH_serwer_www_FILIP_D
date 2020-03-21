@@ -223,8 +223,8 @@ ISR(TIMER0_COMPA_vect) {	/* Timer0 CTC IRQ - F=100Hz, T=10ms */
 	n = Timer7;
 	if(n) Timer7 = --n;
 
-	if(++led_blinker_tim == 60) LED_ON;
-	else if(led_blinker_tim == 65) { LED_OFF; led_blinker_tim=0; }
+	if(++led_blinker_tim == 100) LED_ON;
+	else if(led_blinker_tim == 102) { LED_OFF; led_blinker_tim=0; }
 }
 
 /* interrupt, step seconds counter */
