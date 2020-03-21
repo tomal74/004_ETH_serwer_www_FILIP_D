@@ -253,9 +253,9 @@ void debouncer_process(void) {
 		/* Falling Edge Of Main Relay2 - Get Stop Time Of Second Relay */
 		if(rly_2 == 1) { off_time_2 = time - on_time_2; off_time_2 /= 60; }
 
-		//if(cap_1 && !rly_1) { wait_time_1 = time -  }
+		if(cap_1 == 2) { wait_time_1 = time;  }
 
-		//if(cap_2 && rly_2) {  }
+		if(cap_2 == 2) { wait_time_2 = time; }
 
 		/* Set Interval Beetwen State Checking As 1s */
 		Timer1 = 100;
