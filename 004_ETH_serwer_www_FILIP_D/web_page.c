@@ -35,9 +35,10 @@ uint8_t send_ntp_req_from_idle_loop=0;
 // on "==" use ">=" and set a state that indicates if you already triggered the alarm.
 volatile uint32_t time=0;
 uint32_t on_time_1, on_time_2;
-uint32_t off_time_1, off_time_2;
+uint8_t off_time_1, off_time_2;
 uint32_t wait_time_1, wait_time_2;
 uint32_t fail_time_1, fail_time_2;
+uint8_t off_time_s1, off_time_s2;
 
 uint8_t str_buffer[6];
 uint16_t visitor_counter;
@@ -162,7 +163,7 @@ uint16_t print_webpage(uint8_t *buf) {
         sprintf( (char*)str_buffer, "%d", visitor_counter );
         plen=fill_tcp_data(buf, plen, (char*) str_buffer);
         memset(str_buffer, 0, sizeof(str_buffer));
-        plen=fill_tcp_data_p(buf,plen,PSTR("</i>\n\n"));
+        plen=fill_tcp_data_p(buf,plen,PSTR("</i><hr>\n\n"));
         plen=fill_tcp_data_p(buf,plen,PSTR("<h1>OBORA: "));
 
         if(fail_1) {
@@ -188,11 +189,14 @@ uint16_t print_webpage(uint8_t *buf) {
         plen=fill_tcp_data_p(buf,plen,PSTR("</h1><h2>"));
         printUNIXtime(on_time_1, &plen);
         plen=fill_tcp_data_p(buf,plen,PSTR(", "));
-        sprintf( (char*)str_buffer, "%ld", off_time_1 );
+        sprintf( (char*)str_buffer, "%d", off_time_1 );
         plen=fill_tcp_data(buf, plen, (char*) str_buffer);
 		memset(str_buffer, 0, sizeof(str_buffer));
-        plen=fill_tcp_data_p(buf,plen,PSTR("min</h2>"));
-
+        plen=fill_tcp_data_p(buf,plen,PSTR("min "));
+        sprintf( (char*)str_buffer, "%d", off_time_s1);
+        plen=fill_tcp_data(buf, plen, (char*) str_buffer);
+		memset(str_buffer, 0, sizeof(str_buffer));
+        plen=fill_tcp_data_p(buf,plen,PSTR("s</h2>"));
         plen=fill_tcp_data_p(buf,plen,PSTR("<h1></h1>"));
         plen=fill_tcp_data_p(buf,plen,PSTR("<hr>"));
         plen=fill_tcp_data_p(buf,plen,PSTR("<h1>STODOLA: "));
@@ -220,10 +224,14 @@ uint16_t print_webpage(uint8_t *buf) {
         plen=fill_tcp_data_p(buf,plen,PSTR("</h1><h2>"));
         printUNIXtime(on_time_2, &plen);
         plen=fill_tcp_data_p(buf,plen,PSTR(", "));
-        sprintf( (char*)str_buffer, "%ld", off_time_2 );
+        sprintf( (char*)str_buffer, "%d", off_time_2 );
         plen=fill_tcp_data(buf, plen, (char*) str_buffer);
 		memset(str_buffer, 0, sizeof(str_buffer));
-        plen=fill_tcp_data_p(buf,plen,PSTR("min</h2>"));
+        plen=fill_tcp_data_p(buf,plen,PSTR("min "));
+        sprintf( (char*)str_buffer, "%d", off_time_s2);
+        plen=fill_tcp_data(buf, plen, (char*) str_buffer);
+		memset(str_buffer, 0, sizeof(str_buffer));
+        plen=fill_tcp_data_p(buf,plen,PSTR("s</h2>"));
 
         plen=fill_tcp_data_p(buf,plen,PSTR("</pre>\n"));
         return(plen);
@@ -255,10 +263,14 @@ uint16_t print_app_webpage(uint8_t *buf) {
         plen=fill_tcp_data_p(buf,plen,PSTR("</h1><h2>"));
         printUNIXtime(on_time_1, &plen);
         plen=fill_tcp_data_p(buf,plen,PSTR(", "));
-        sprintf( (char*)str_buffer, "%ld", off_time_1 );
+        sprintf( (char*)str_buffer, "%d", off_time_1 );
         plen=fill_tcp_data(buf, plen, (char*) str_buffer);
 		memset(str_buffer, 0, sizeof(str_buffer));
-        plen=fill_tcp_data_p(buf,plen,PSTR("min</h2>"));
+        plen=fill_tcp_data_p(buf,plen,PSTR("min "));
+        sprintf( (char*)str_buffer, "%d", off_time_s1);
+        plen=fill_tcp_data(buf, plen, (char*) str_buffer);
+		memset(str_buffer, 0, sizeof(str_buffer));
+        plen=fill_tcp_data_p(buf,plen,PSTR("s</h2>"));
 
         plen=fill_tcp_data_p(buf,plen,PSTR("<h1></h1>"));
         plen=fill_tcp_data_p(buf,plen,PSTR("<hr>"));
@@ -279,10 +291,14 @@ uint16_t print_app_webpage(uint8_t *buf) {
         plen=fill_tcp_data_p(buf,plen,PSTR("</h1><h2>"));
         printUNIXtime(on_time_2, &plen);
         plen=fill_tcp_data_p(buf,plen,PSTR(", "));
-        sprintf( (char*)str_buffer, "%ld", off_time_2 );
+        sprintf( (char*)str_buffer, "%d", off_time_2 );
         plen=fill_tcp_data(buf, plen, (char*) str_buffer);
 		memset(str_buffer, 0, sizeof(str_buffer));
-        plen=fill_tcp_data_p(buf,plen,PSTR("min</h2>"));
+        plen=fill_tcp_data_p(buf,plen,PSTR("min "));
+        sprintf( (char*)str_buffer, "%d", off_time_s2);
+        plen=fill_tcp_data(buf, plen, (char*) str_buffer);
+		memset(str_buffer, 0, sizeof(str_buffer));
+        plen=fill_tcp_data_p(buf,plen,PSTR("s</h2>"));
 
         plen=fill_tcp_data_p(buf,plen,PSTR("</pre>\n"));
         return(plen);
