@@ -11,16 +11,18 @@
 
 #include <avr/io.h>
 
-#define BUFFER_SIZE 900
+#define BUFFER_SIZE 800
 
-extern uint32_t on_time_1;
-extern uint32_t on_time_2;
+extern uint32_t on_time_1, on_time_2;
+extern uint32_t off_time_1, off_time_2;
+extern uint32_t wait_time_1, wait_time_2;
 extern uint8_t send_ntp_req_from_idle_loop;
 extern uint8_t buf[BUFFER_SIZE+1];
 extern uint16_t gPlen;
 extern uint8_t ntp_client_attempts;
 extern volatile uint32_t time;
 extern uint8_t haveNTPanswer;
+
 
 uint16_t http200ok(void);
 uint16_t http200okjs(void);

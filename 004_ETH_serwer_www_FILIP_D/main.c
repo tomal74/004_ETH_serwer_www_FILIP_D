@@ -33,11 +33,11 @@
 // ustalamy adres MAC
 static uint8_t mymac[6] = {0x54,0x55,0x58,0x10,0x00,0x29};
 // ustalamy adres IP urz¹dzenia
-static uint8_t myip[4] = {192,168,0,110};
+static uint8_t myip[4] = {192,168,1,110};
 // Default gateway. The ip address of your DSL router. It can be set to the same as
 // msrvip the case where there is no default GW to access the
 // web server (=web server is on the same lan as this host)
-static uint8_t gwip[4] = {192,168,0,1};
+static uint8_t gwip[4] = {192,168,1,1};
 // --------------- normally you don't change anything below this line
 // time.apple.com (any of 17.254.0.31, 17.254.0.26, 17.254.0.27, 17.254.0.28):
 //static uint8_t ntpip[4] = {132,163,4,103};
@@ -46,31 +46,18 @@ uint8_t ntpip[4] = {134,130,4,17};
 // server listen port for www
 #define MYWWWPORT 881
 
-
 /* Time To Get Time From NTP Server */
 //#define SEC_TO_SYNC 65500UL	// Aprox 18h
 //#define SEC_TO_SYNC 3600UL		// 1h
 #define SEC_TO_SYNC 9720UL
 #define GETTIMEOFDAY_TO_NTP_OFFSET 2208988800UL
-
 static uint8_t ntpclientportL=0; // lower 8 bytes of local port number
-
 volatile uint8_t Timer1, Timer2, Timer3, Timer4, Timer5, Timer6, Timer7;
 uint8_t cap_1, cap_2, rly_1, rly_2, fail_1, fail_2;
-
-
-
 volatile uint16_t time_to_sync=10;
 
 
-
-
-
-
-
 void debouncer_process(void);
-
-
 
 
 /* User Main Begin */
@@ -257,13 +244,19 @@ void debouncer_process(void) {
 		fail_1 = RelaySuperDebounce(&sw5, &FAILURE1_PIN, FAILURE1_MASK, &Timer6, NULL);
 		fail_2 = RelaySuperDebounce(&sw6, &FAILURE2_PIN, FAILURE2_MASK, &Timer7, NULL);
 
-		if(rly_1 == 2) {
-			on_time_1 = time;
-		}
+		/* Rising Edge Of Cap Sensor1 - Get Start Time Of First Relay */
+		if(rly_1 == 2) on_time_1 = time;
 		/* Rising Edge Of Cap Sensor2 - Get Start Time Of Second Relay */
-		if(rly_2 == 2) {
-			on_time_2 = time;
-		}
+		if(rly_2 == 2) on_time_2 = time;
+		/* Falling Edge Of Main Relay1 - Get Stop Time Of First Relay */
+		if(rly_1 == 1) { off_time_1 = time - on_time_1; off_time_1 /= 60; }
+		/* Falling Edge Of Main Relay2 - Get Stop Time Of Second Relay */
+		if(rly_2 == 1) { off_time_2 = time - on_time_2; off_time_2 /= 60; }
+
+		//if(cap_1 && !rly_1) { wait_time_1 = time -  }
+
+		//if(cap_2 && rly_2) {  }
+
 		/* Set Interval Beetwen State Checking As 1s */
 		Timer1 = 100;
 	}
