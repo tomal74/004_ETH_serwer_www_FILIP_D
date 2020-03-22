@@ -222,7 +222,7 @@ ISR(TIMER0_COMPA_vect) {	/* Timer0 CTC IRQ - F=100Hz, T=10ms */
 
 	n = Timer7;
 	if(n) Timer7 = --n;
-
+	/* LED blinks */
 	if(++led_blinker_tim == 100) LED_ON;
 	else if(led_blinker_tim == 102) { LED_OFF; led_blinker_tim=0; }
 }
@@ -251,11 +251,19 @@ void debouncer_process(void) {
 		/* Main Relay1 On - Get Work Time Of First Relay */
 		if(rly_1 == 1) { off_time_1 = (time - on_time_1) / 60UL; off_time_s1 = (time - on_time_1) % 60UL; }
 		/* Rising Edge Of Cap Sensor1 - Get Start Time Of First Relay */
-		else if(rly_1 == 2) on_time_1 = time;
+		else if(rly_1 == 2) {
+			on_time3_1 = on_time2_1; 	   on_time2_1 = on_time_1;      on_time_1 = time;
+			off_time3_1 = off_time2_1;     off_time2_1 = off_time_1;
+			off_time3_s1 = off_time2_s1;   off_time2_s1 = off_time_s1;
+		}
 		/* Main Relay2 On - Get Work Time Of Second Relay */
 		if(rly_2 == 1) { off_time_2 = (time - on_time_2) / 60UL; off_time_s2 = (time - on_time_2) % 60UL; }
 		/* Rising Edge Of Cap Sensor2 - Get Start Time Of Second Relay */
-		else if(rly_2 == 2) on_time_2 = time;
+		else if(rly_2 == 2) {
+			on_time3_2 = on_time2_2; 	   on_time2_2 = on_time_2;      on_time_2 = time;
+			off_time3_2 = off_time2_2;     off_time2_2 = off_time_2;
+			off_time3_s2 = off_time2_s2;   off_time2_s2 = off_time_s2;
+		}
 		/* Rising Edge On Cap Sensor1 - Get The Wait Start Time */
 		if(cap_1 == 2) wait_time_1 = time;
 		/* Rising Edge On Cap Sensor2 - Get The Wait Start Time */

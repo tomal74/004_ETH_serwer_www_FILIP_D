@@ -13,9 +13,9 @@
 
 #define BUFFER_SIZE 800
 
-extern uint32_t on_time_1, on_time_2;
-extern uint8_t off_time_1, off_time_2;
-extern uint8_t off_time_s1, off_time_s2;
+extern uint32_t on_time_1, on_time2_1, on_time3_1, on_time_2, on_time2_2, on_time3_2;
+extern uint8_t off_time_s1, off_time2_s1, off_time3_s1, off_time_s2, off_time2_s2, off_time3_s2;
+extern uint8_t off_time_1, off_time2_1, off_time3_1, off_time_2, off_time2_2, off_time3_2;
 extern uint32_t wait_time_1, wait_time_2;
 extern uint32_t fail_time_1, fail_time_2;
 extern uint8_t send_ntp_req_from_idle_loop;
