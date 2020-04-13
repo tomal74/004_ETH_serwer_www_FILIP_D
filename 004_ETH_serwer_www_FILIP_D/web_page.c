@@ -40,7 +40,7 @@ uint32_t wait_time_1, wait_time_2;
 uint32_t fail_time_1, fail_time_2;
 uint8_t off_time_s1, off_time2_s1, off_time3_s1, off_time_s2, off_time2_s2, off_time3_s2;
 
-uint8_t str_buffer[6];
+uint8_t str_buffer[20];
 uint16_t visitor_counter;
 
 const char http_head[] PROGMEM = "HTTP/1.0 200 OK\r\nContent-Type: text/html\r\nPragma: no-cache\r\n\r\n";

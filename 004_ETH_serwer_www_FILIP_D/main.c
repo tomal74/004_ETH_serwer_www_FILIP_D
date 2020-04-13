@@ -33,11 +33,11 @@
 // ustalamy adres MAC
 static uint8_t mymac[6] = {0x54,0x55,0x58,0x10,0x00,0x29};
 // ustalamy adres IP urz¹dzenia
-static uint8_t myip[4] = {192,168,1,110};
+static uint8_t myip[4] = {192,168,0,87};
 // Default gateway. The ip address of your DSL router. It can be set to the same as
 // msrvip the case where there is no default GW to access the
 // web server (=web server is on the same lan as this host)
-static uint8_t gwip[4] = {192,168,1,1};
+static uint8_t gwip[4] = {192,168,0,1};
 // --------------- normally you don't change anything below this line
 // time.apple.com (any of 17.254.0.31, 17.254.0.26, 17.254.0.27, 17.254.0.28):
 //static uint8_t ntpip[4] = {132,163,4,103};
@@ -247,6 +247,15 @@ void debouncer_process(void) {
 		rly_2 =  RelaySuperDebounce(&sw4, &MAIN_RELAY2_PIN, MAIN_RELAY2_MASK, &Timer5, NULL);
 		fail_1 = RelaySuperDebounce(&sw5, &FAILURE1_PIN, FAILURE1_MASK, &Timer6, NULL);
 		fail_2 = RelaySuperDebounce(&sw6, &FAILURE2_PIN, FAILURE2_MASK, &Timer7, NULL);
+
+		if(rly_1 < 2) rly_1 = !rly_1;
+		else if(rly_1 == 2) rly_1 = 3;
+		else if(rly_1 == 3) rly_1 = 2;
+
+		if(rly_2 < 2) rly_2 = !rly_2;
+		else if(rly_2 == 2) rly_2 = 3;
+		else if(rly_2 == 3) rly_2 = 2;
+
 
 		/* Main Relay1 On - Get Work Time Of First Relay */
 		if(rly_1 == 1) { off_time_1 = (time - on_time_1) / 60UL; off_time_s1 = (time - on_time_1) % 60UL; }
